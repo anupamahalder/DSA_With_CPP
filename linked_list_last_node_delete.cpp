@@ -107,6 +107,7 @@ void delete_last_node(Node *&head){
     if(head->next == NULL){
         head = NULL;
         delete tmp;
+	cout<<"Deleted last node successfully!"<<endl<<endl;
 	return;
     }
     while(tmp->next->next != NULL){
