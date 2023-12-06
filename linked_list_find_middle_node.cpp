@@ -1,4 +1,4 @@
-// Find the middle element of the singly linked list
+// Find middle node of a singly linked list
 
 #include<bits/stdc++.h>
 using namespace std;
@@ -38,29 +38,19 @@ void print_linked_list(Node *head){
     }
     cout<<endl;
 }
-int node_count(Node *head){
-    if(head == NULL) return 0;
-    Node *tmp = head;
-    int cnt = 0;
-    while(tmp != NULL){
-        cnt++;
-        tmp = tmp->next;
-    }
-    return cnt;
-}
-void middle_node(Node *head){
-    int cnt = node_count(head);
-    if(cnt == 0){
-        cout<<"Linked list is empty\n";
-    } 
-    else{
-        if(cnt%2==1) cnt++;
-        Node *tmp = head;
-        for(int i=0;i<cnt/2-1;i++){
-            tmp = tmp->next;
+
+Node* middle_node(Node *head){
+    if(head == NULL || head->next == NULL) return head;
+    Node *fast = head;
+    Node *slow = head;
+    while(slow != NULL && fast->next != NULL){
+        slow = slow->next;
+        fast = fast->next;
+        if(fast->next != NULL){
+            fast = fast->next;
         }
-        cout<<tmp->val;
     }
+    return slow;
 }
 
 int main(){
@@ -78,8 +68,10 @@ int main(){
     }
     cout<<"The before sorting the linked list"<<endl;
     print_linked_list(head);
+
+    Node *mid = middle_node(head);
     cout<<"Middle element of the linked list is: "<<endl;
-    middle_node(head);
-    cout<<endl;
+    if(mid != NULL) cout<<mid->val<<endl;
+    else cout<<"Linked list is empty"<<endl;
     return 0;
 }
