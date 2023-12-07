@@ -11,6 +11,60 @@ class Node{
 		this->next = NULL;
 	}
 };
+void delete_head_node(Node *&head){
+    if(head == NULL){
+        cout<<"Linked is already empty!"<<endl<<endl;
+        return;
+    }
+    // save head node then delete 
+    Node *deleteNode = head;
+    // make new head node 
+    head = head->next;
+    // delete previous head node 
+    delete deleteNode;
+    cout<<"Successfully deleted head node!"<<endl<<endl;
+}
+void delete_node(Node *&head, int pos){
+    if(pos==1){
+        delete_head_node(head);
+        return;
+    }
+    Node *tmp = head;
+    for(int i=1;i<pos-1;i++){
+        // traverse 
+        tmp = tmp->next;
+    }
+    // save delete node to delete later 
+    Node *deleteNode = tmp->next;
+    // make connection 
+    tmp->next = tmp->next->next;
+    // delete the node 
+    delete deleteNode;
+    cout<<"Successfully deteted node at position "<<pos<<"!"<<endl<<endl;
+}
+void delete_last_node(Node *&head){
+    if(head == NULL){
+        cout<<"Linked list is empty!"<<endl<<endl;
+        return;
+    }
+    Node *tmp = head;
+    if(head->next == NULL){
+        head = NULL;
+        delete tmp;
+	cout<<"Deleted last node successfully!"<<endl<<endl;
+	return;
+    }
+    while(tmp->next->next != NULL){
+        tmp = tmp->next;
+    }
+    // save last node 
+    Node *deleteNode = tmp->next;
+    tmp->next = NULL;
+    // tmp is now at last node 
+    delete deleteNode;
+    cout<<"Deleted last node successfully!"<<endl<<endl;
+}
+
 void insert_at_beginning(Node *&head, int val){
     // create head node 
     Node *newNode = new Node(val);
@@ -67,59 +121,7 @@ void insert_at_position(Node *&head, int pos, int val){
     }
     cout<<"Successfully inserted at "<<pos<<" position!"<<endl;
 }
-void delete_head_node(Node *&head){
-    if(head == NULL){
-        cout<<"Linked is already empty!"<<endl<<endl;
-        return;
-    }
-    // save head node then delete 
-    Node *deleteNode = head;
-    // make new head node 
-    head = head->next;
-    // delete previous head node 
-    delete deleteNode;
-    cout<<"Successfully deleted head node!"<<endl<<endl;
-}
-void delete_node(Node *&head, int pos){
-    if(pos==1){
-        delete_head_node(head);
-        return;
-    }
-    Node *tmp = head;
-    for(int i=1;i<pos-1;i++){
-        // traverse 
-        tmp = tmp->next;
-    }
-    // save delete node to delete later 
-    Node *deleteNode = tmp->next;
-    // make connection 
-    tmp->next = tmp->next->next;
-    // delete the node 
-    delete deleteNode;
-    cout<<"Successfully deteted node at position "<<pos<<"!"<<endl<<endl;
-}
-void delete_last_node(Node *&head){
-    if(head == NULL){
-        cout<<"Linked list is empty!"<<endl<<endl;
-        return;
-    }
-    Node *tmp = head;
-    if(head->next == NULL){
-        head = NULL;
-        delete tmp;
-	cout<<"Deleted last node successfully!"<<endl<<endl;
-	return;
-    }
-    while(tmp->next->next != NULL){
-        tmp = tmp->next;
-    }
-    // save last node 
-    Node *deleteNode = tmp->next;
-    tmp->next = NULL;
-    // tmp is now at last node 
-    delete deleteNode;
-    cout<<"Deleted last node successfully!"<<endl<<endl;
-}
+
 void print_linked_list(Node *head){
     if(head == NULL){
         cout<<"Linked list is empty!"<<endl;
