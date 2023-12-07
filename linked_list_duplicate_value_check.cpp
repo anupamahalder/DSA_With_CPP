@@ -13,77 +13,19 @@ class Node{
 	}
 };
 
-void insert_at_end(Node *&head, int val){
+void insert_at_end(Node *&head, Node *&tail, int val){
     // create head node 
     Node *newNode = new Node(val);
     
     // check head is null or not 
     if(head == NULL){
         head = newNode;
+        tail = newNode;
     }
     else{
-        Node *tmp = head;
-        while(tmp->next != NULL){
-            // traverse to reach at last position 
-            tmp =  tmp->next;
-        }
-        // add newNode to the last node 
-        tmp->next = newNode;
+        tail->next = newNode;
+        tail = newNode;
     }
-}
-
-void delete_head_node(Node *&head){
-    if(head == NULL){
-        cout<<"Linked is already empty!"<<endl<<endl;
-        return;
-    }
-    // save head node then delete 
-    Node *deleteNode = head;
-    // make new head node 
-    head = head->next;
-    // delete previous head node 
-    delete deleteNode;
-    cout<<"Successfully deleted head node!"<<endl<<endl;
-}
-void delete_node(Node *&head, int pos){
-    if(pos==1){
-        delete_head_node(head);
-        return;
-    }
-    Node *tmp = head;
-    for(int i=1;i<pos-1;i++){
-        // traverse 
-        tmp = tmp->next;
-    }
-    // save delete node to delete later 
-    Node *deleteNode = tmp->next;
-    // make connection 
-    tmp->next = tmp->next->next;
-    // delete the node 
-    delete deleteNode;
-    cout<<"Successfully deteted node at position "<<pos<<"!"<<endl<<endl;
-}
-void delete_last_node(Node *&head){
-    if(head == NULL){
-        cout<<"Linked list is empty!"<<endl<<endl;
-        return;
-    }
-    Node *tmp = head;
-    if(head->next == NULL){
-        head = NULL;
-        delete tmp;
-        cout<<"Deleted last node successfully!"<<endl<<endl;
-        return;
-    }
-    while(tmp->next->next != NULL){
-        tmp = tmp->next;
-    }
-    // save last node 
-    Node *deleteNode = tmp->next;
-    tmp->next = NULL;
-    // tmp is now at last node 
-    delete deleteNode;
-    cout<<"Deleted last node successfully!"<<endl<<endl;
 }
 void print_linked_list(Node *head){
     if(head == NULL){
@@ -108,18 +50,10 @@ bool check_duplicate_node(Node *head, int num){
     }
     return false;
 }
-int node_count(Node *head){
-    Node *tmp = head;
-    int cnt=0;
-    while(tmp != 0){
-        cnt++;
-        tmp = tmp->next;
-    }
-    return cnt;
-}
 int main(){
-    // create head node initializes with null pointer 
+    // create head and tail node initializes with null pointer 
     Node *head = NULL;
+    Node *tail = NULL;
     while(1){
         cout<<"Enter 0 to exit!"<<endl;
         cout<<"Enter the node value: ";
@@ -127,7 +61,7 @@ int main(){
         cin>>num;
         if(num==0) break;
         // calling insert at end function 
-        insert_at_end(head,num);
+        insert_at_end(head,tail,num);
     }
     // make copy of head node 
     Node *tmp = head;
