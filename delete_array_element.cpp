@@ -13,7 +13,7 @@ int main(){
     cout<<"Enter a position to delete element:";
     cin>>pos;
     // index will be position-1 
-    if(pos>0 && pos<n){
+    if(pos>0 && pos<=n){
         for(int i=pos-1;i<n;i++){
             arr[i] = arr[i+1];
         }
