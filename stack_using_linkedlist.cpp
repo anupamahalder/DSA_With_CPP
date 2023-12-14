@@ -21,7 +21,6 @@ class LinkedlistStack{
         LinkedlistStack(){
             top = NULL;
         }
-        // methods for our ArrStack class
         // function to check stack is empty or not 
         bool isEmpty(){
             return top==NULL;
@@ -54,7 +53,7 @@ class LinkedlistStack{
         void print_stack(){
             if(top==NULL){
                 cout<<"Stack is empty"<<endl;
-								return;
+		return;
             }
             Node *tmp = top;
             while(tmp != NULL){
@@ -65,7 +64,7 @@ class LinkedlistStack{
         }
 };
 int main(){
-    // create object of ArrStack class 
+    // create object of LinkedlistStack class 
     LinkedlistStack myStack;
     if(myStack.isEmpty()){
         cout<<"Stack is empty!"<<endl;
