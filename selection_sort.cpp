@@ -2,6 +2,7 @@
 #include<bits/stdc++.h>
 using namespace std;
 int main(){
+    // number of element in an array
     int n;
     cin>>n;
     int arr[n];
