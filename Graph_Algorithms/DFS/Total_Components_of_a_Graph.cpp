@@ -33,7 +33,7 @@ int main(){
     memset(vis, false, sizeof(vis));
     // count the number of total components 
     int count = 0;
-    for(int i=1;i<=nodes;i++){
+    for(int i=0;i<nodes;i++){
         if(!vis[i]){
             // call dfs 
             dfs(i);
@@ -48,14 +48,46 @@ int main(){
 /*
 ====================OUTPUT SECTION==========================
 INPUT: 
-      nodes = 8, edges = 5
-      1 2 
-      3 4
-      6 4
-      5 2
-      8 7
-
+    nodes = 6, edges = 5
+    0 1
+    0 2
+    0 3
+    2 3
+    4 5
+OUTPUT: Number of total components: 2
+----------------------------------------------------------
+INPUT: 
+    nodes = 9, edges = 7
+    0 1
+    0 2
+    0 3
+    2 3
+    4 5
+    6 8
+    7 6
 OUTPUT: Number of total components: 3
+----------------------------------------------------------
+INPUT: 
+    nodes = 7, edges = 7
+    0 1
+    1 2
+    2 3
+    1 3
+    4 0
+    0 5
+    5 6 
+OUTPUT: Number of total components: 1
+----------------------------------------------------------
+INPUT: 
+    nodes = 10, edges = 5
+    1 2
+    2 3
+    1 3
+    4 0
+    5 6
+      
+OUTPUT: Number of total components: 6 
+(Because 7 8 and 9 nodes are not connected, but they are also components)
 ----------------------------------------------------------
 INPUT: 
       nodes = 8, edges = 6
@@ -67,6 +99,6 @@ INPUT:
       7 2
       
 OUTPUT: Number of total components: 2
-      
+
 ============================================================
 */
