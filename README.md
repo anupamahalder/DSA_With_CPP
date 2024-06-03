@@ -13,3 +13,5 @@ This repository is going to have the data structure and algorithm problem solve 
 9. Recusrion
 10. String
 11. Graph Algorithms
+
+## 1. Problem Solving on Array:
